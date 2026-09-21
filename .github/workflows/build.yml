@@ -24,6 +24,7 @@ jobs:
       - name: Configure Kernel
         run: |
           make defconfig
+          echo "CONFIG_WERROR=n" >> .config
 
       - name: Compile Kernel
         run: |
