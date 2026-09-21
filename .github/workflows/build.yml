@@ -12,6 +12,10 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v3
 
+      - name: Clone Realtek Wireless Driver
+        run: |
+          git clone https://github.com/brektrou/rtl8821cu.git drivers/net/wireless/rtl8821cu
+
       - name: Install Build Dependencies
         run: |
           sudo apt update
