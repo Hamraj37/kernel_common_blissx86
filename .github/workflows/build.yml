@@ -1,0 +1,26 @@
+name: Build Linux Kernel
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Install Build Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential bc bison flex libssl-dev libelf-dev zlib1g-dev
+
+      - name: Configure Kernel
+        run: |
+          make defconfig
+
+      - name: Compile Kernel
+        run: |
+          make -j$(nproc)
